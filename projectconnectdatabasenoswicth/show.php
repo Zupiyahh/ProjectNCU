@@ -22,12 +22,12 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
-	echo "<table border='1'><th>No</th><th>WTime</th><th>Process</th><th>DATETIME</th>";
+	echo "<table border='1'><th>No</th><th>WTime</th><th>State</th><th>DATETIME</th>";
     while($row = $result->fetch_assoc()) {
 		echo "<tr>";
 		echo "<td>".$row['No']."</td>";
 		echo "<td>".$row['WTime']."</td>";
-		echo "<td>".$row['Process']."</td>";
+		echo "<td>".$row['State']."</td>";
 		echo "<td>".$row['reading_time']."</td>";
 		echo "</tr>";
     }

@@ -1,6 +1,5 @@
 <?php
 
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -12,12 +11,12 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-if (!empty($_GET['WTime']) && (!empty($_GET['Process']))) {
+if (!empty($_GET['WTime']) && (!empty($_GET['State']))) {
     $WTime = $_GET['WTime'];
-    $Process = $_GET['Process'];
+    $State = $_GET['State'];
     echo ($WTime);
-    echo ($Process);
-    $sql = "INSERT INTO projectconnectdatabasenoswicth(WTime, Process) VALUES ('" . $WTime . "', '" . $Process . "')";
+    echo ($State);
+    $sql = "INSERT INTO projectconnectdatabasenoswicth(WTime, State) VALUES ('" . $WTime . "', '" . $State . "')";
 
     if ($conn->query($sql) === TRUE) {
         echo "save OK";
