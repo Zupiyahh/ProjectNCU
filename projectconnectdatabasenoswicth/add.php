@@ -11,12 +11,16 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-if (!empty($_GET['WTime']) && (!empty($_GET['State']))) {
+if ( !empty($_GET['WID']) && (!empty($_GET['WTime'])) && (!empty($_GET['State'])) ) {
+    
+    $WID = $_GET['WID'];
     $WTime = $_GET['WTime'];
     $State = $_GET['State'];
+    echo ($WID);
     echo ($WTime);
     echo ($State);
-    $sql = "INSERT INTO projectconnectdatabasenoswicth(WTime, State) VALUES ('" . $WTime . "', '" . $State . "')";
+
+    $sql = "INSERT INTO Hardware(WID, WTime, State) VALUES ('" . $WID . "', '" . $WTime . "', '" . $State . "')";
 
     if ($conn->query($sql) === TRUE) {
         echo "save OK";

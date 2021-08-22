@@ -17,15 +17,15 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "SELECT * FROM projectconnectdatabasenoswicth  ";
+$sql = "SELECT * FROM Hardware  ";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
-	echo "<table border='1'><th>No</th><th>WTime</th><th>State</th><th>DATETIME</th>";
+	echo "<table border='1'><th>WID</th><th>WTime</th><th>State</th><th>DATETIME</th>";
     while($row = $result->fetch_assoc()) {
 		echo "<tr>";
-		echo "<td>".$row['No']."</td>";
+		echo "<td>".$row['WID']."</td>";
 		echo "<td>".$row['WTime']."</td>";
 		echo "<td>".$row['State']."</td>";
 		echo "<td>".$row['reading_time']."</td>";
