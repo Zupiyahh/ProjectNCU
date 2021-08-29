@@ -398,32 +398,30 @@ void actionMode(char Mode) {
   }
 }
 
-void state(int &flag) {
-  if (digitalRead(Lswitch) == HIGH) {
-    Serial.println("State:Free");
-    NodeSerial.println("State:Free");
+void countdown() {
+  if ( (digitalRead(Lswitch) == HIGH) && (flag == 1) ) {
+    Serial.println("door is opened");
+    NodeSerial.println("Idle");
+    flag = 0;
+    delay(20);
   }
+
   else if ( (digitalRead(Lswitch) == LOW) && (flag == 0) ) {
-    Serial.println("State:Busy");
-    NodeSerial.println("State:Busy");
     flag = 1;
+    delay(20);
 
     //ตั้งเวลาเกิน
-    for (int i = 15; i >= 0; i -- ) {
+    for (int i = 5; i >= 0; i -- ) {
       Serial.print("\tcountdown:");
       Serial.println(i);
       if ( (digitalRead(Lswitch) == HIGH) && (flag == 1) ) {
-        Serial.println("State:Free");
-        NodeSerial.println("State:Free");
+        Serial.println("door is opened");
+        NodeSerial.println("Idle");
         flag = 0;
         break ;
+	delay(20);
       }
-      delay(50);
-    }
-    if (flag == 1) {
-      Serial.println("State:Error");
-      NodeSerial.println("State:Error");
-
+      //delay(50);
     }
   }
 }

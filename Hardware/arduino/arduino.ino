@@ -1,13 +1,15 @@
-int Lswitch = 2;
-int led = 13;
+#include "SoftwareSerial.h"
 
-#include <SoftwareSerial.h>
 SoftwareSerial NodeSerial(10, 11); // RX | TX
 
-void actionMode(char Mode) {
-  int Time;
-  int i;
 
+int Lswitch = 2;
+int led = 13;
+int Time;
+int i;
+int flag = 0;
+
+void actionMode(char Mode) {
   switch (Mode) {
     case '1':
       Time = 90;
@@ -17,7 +19,7 @@ void actionMode(char Mode) {
 
         Serial.print("\nTime is :");
         Serial.println(i);
-        Serial.print("process is :");
+        Serial.print("State is :");
 
         if (i > 80 && i <= 90) {
           NodeSerial.println("Water");
@@ -48,8 +50,12 @@ void actionMode(char Mode) {
           Serial.println("SpinDrying");
         }
         else if (i == 1) {
-          NodeSerial.println("finishedWashing!!");
-          Serial.println("finishedWashing!!");
+          NodeSerial.println("finishedWashing");
+          Serial.println("finishedWashing");
+        }
+        else if (i == 0) {
+          NodeSerial.println("finishedWashing");
+          Serial.println("finishedWashing");
         }
 
         NodeSerial.flush();
@@ -64,7 +70,7 @@ void actionMode(char Mode) {
 
         Serial.print("\nTime is :");
         Serial.println(i);
-        Serial.print("process is :");
+        Serial.print("State is :");
 
         if (i > 89 && i <= 101) {
           NodeSerial.println("Water");
@@ -95,8 +101,8 @@ void actionMode(char Mode) {
           Serial.println("SpinDrying");
         }
         else if (i == 1) {
-          NodeSerial.println("finishedWashing!!");
-          Serial.println("finishedWashing!!");
+          NodeSerial.println("finishedWashing");
+          Serial.println("finishedWashing");
         }
 
         NodeSerial.flush();
@@ -111,10 +117,10 @@ void actionMode(char Mode) {
 
         Serial.print("\nTime is :");
         Serial.println(i);
-        Serial.print("process is :");
+        Serial.print("State is :");
 
 
-        if (i> 54 && i <= 61) {
+        if (i > 54 && i <= 61) {
           NodeSerial.println("Water");
           Serial.println("Water");
         }
@@ -143,8 +149,8 @@ void actionMode(char Mode) {
           Serial.println("SpinDrying");
         }
         else if (i == 1) {
-          NodeSerial.println("finishedWashing!!");
-          Serial.println("finishedWashing!!");
+          NodeSerial.println("finishedWashing");
+          Serial.println("finishedWashing");
         }
 
         NodeSerial.flush();
@@ -159,7 +165,7 @@ void actionMode(char Mode) {
 
         Serial.print("\nTime is :");
         Serial.println(i);
-        Serial.print("process is :");
+        Serial.print("State is :");
 
 
         if (i > 42 && i <= 47) {
@@ -191,8 +197,8 @@ void actionMode(char Mode) {
           Serial.println("SpinDrying");
         }
         else if (i == 1) {
-          NodeSerial.println("finishedWashing!!");
-          Serial.println("finishedWashing!!");
+          NodeSerial.println("finishedWashing");
+          Serial.println("finishedWashing");
         }
         NodeSerial.flush();
       }
@@ -206,7 +212,7 @@ void actionMode(char Mode) {
 
         Serial.print("\nTime is :");
         Serial.println(i);
-        Serial.print("process is :");
+        Serial.print("State is :");
 
         if (i > 31 && i <= 35) {
           NodeSerial.println("Water");
@@ -237,8 +243,8 @@ void actionMode(char Mode) {
           Serial.println("SpinDrying");
         }
         else if (i == 1) {
-          NodeSerial.println("finishedWashing!!");
-          Serial.println("finishedWashing!!");
+          NodeSerial.println("finishedWashing");
+          Serial.println("finishedWashing");
         }
 
         NodeSerial.flush();
@@ -253,7 +259,7 @@ void actionMode(char Mode) {
 
         Serial.print("\nTime is :");
         Serial.println(i);
-        Serial.print("process is :");
+        Serial.print("State is :");
 
 
         if (i > 53 && i <= 60) {
@@ -280,13 +286,13 @@ void actionMode(char Mode) {
           NodeSerial.println("WasteWater");
           Serial.println("WasteWater");
         }
-        else if (i >=2 && i <= 10) {
+        else if (i >= 2 && i <= 10) {
           NodeSerial.println("SpinDrying");
           Serial.println("SpinDrying");
         }
         else if (i == 1) {
-          NodeSerial.println("finishedWashing!!");
-          Serial.println("finishedWashing!!");
+          NodeSerial.println("finishedWashing");
+          Serial.println("finishedWashing");
         }
 
         NodeSerial.flush();
@@ -294,48 +300,48 @@ void actionMode(char Mode) {
       break;
 
     case '7':
-      Time = 30;
+      Time = 10;
       for (i = Time; i > 0; i--) {
-        delay(6000);
+        delay(7000);
         NodeSerial.write(i);
 
         Serial.print("\nTime is :");
         Serial.println(i);
- 
+        Serial.print("State is :");
 
         if (i > 27 && i <= 30) {
           NodeSerial.println("Water");
-          Serial.println("process is :Water");
+          Serial.println("Water");
         }
         else if (i > 20 && i <= 27) {
           NodeSerial.println("Wash");
-          Serial.println("process is :Wash");
+          Serial.println("Wash");
         }
         else if (i > 18 && i <= 20) {
           NodeSerial.println("WasteWater");
-          Serial.println("process is :WasteWater");
+          Serial.println("WasteWater");
         }
         else if (i > 15 && i <= 18) {
           NodeSerial.println("Water");
-          Serial.println("process is :Water");
+          Serial.println("Water");
         }
         else if (i > 8 && i <= 15) {
           NodeSerial.println("RinseWash");
-          Serial.println("process is :RinseWash");
+          Serial.println("RinseWash");
         }
         else if (i > 6 && i <= 8) {
           NodeSerial.println("WasteWater");
-          Serial.println("process is :WasteWater");
+          Serial.println("WasteWater");
         }
         else if (i >= 2 && i <= 6) {
           NodeSerial.println("SpinDrying");
-          Serial.println("process is :SpinDrying");
+          Serial.println("SpinDrying");
         }
         else if (i == 1) {
-          NodeSerial.println("finishedWashing!!");
-          Serial.println("process is :finishedWashing!!");
+          NodeSerial.println("finishedWashing");
+          Serial.println("finishedWashing");
+          countdown();
         }
-
         NodeSerial.flush();
       }
       break;
@@ -348,7 +354,7 @@ void actionMode(char Mode) {
 
         Serial.print("\nTime is :");
         Serial.println(i);
-        Serial.print("process is :");
+        Serial.print("State is :");
 
         if (i > 48 && i <= 54) {
           NodeSerial.println("Water");
@@ -379,8 +385,8 @@ void actionMode(char Mode) {
           Serial.println("SpinSpinDrying");
         }
         else if (i == 1) {
-          NodeSerial.println("finishedWashing!!");
-          Serial.println("finishedWashing!!");
+          NodeSerial.println("finishedWashing");
+          Serial.println("finishedWashing");
         }
 
         NodeSerial.flush();
@@ -390,28 +396,72 @@ void actionMode(char Mode) {
   }
 }
 
-void setup() {
-  Serial.begin(9600);
-  NodeSerial.begin(9600);
-
-  pinMode(Lswitch, INPUT);
-  pinMode(led, OUTPUT);
-}
-
-void loop() {
-  char Mode;
-  int input;
-  //รับข้อมูล mode จาก esp
-  while (NodeSerial.available () > 0) {
-    input = NodeSerial.parseInt();
-    Mode = char(input);
-    if ( Mode == '1' || Mode == '2' || Mode == '3' || Mode == '4' || Mode == '5' || Mode == '6' || Mode == '7' || Mode == '8' ) {
-      Serial.print(" Mode is ");
-      Serial.print(Mode);
-      Serial.print("\n");
-      actionMode(Mode);
+void countdown() {
+  //ตั้งเวลาเกิน
+  for (int i = 5; i >= 0; i -- ) {
+    Serial.print("\tcountdown:");
+    Serial.println(i);
+    delay(1000);
+    if ( (digitalRead(Lswitch) == HIGH) && (flag == 1) )
+    {
+      Serial.println("door is opened");
+      NodeSerial.write("1");
+      NodeSerial.println("Idle");
+      flag = 0;
+      break ;
     }
-
-
+  }
+  NodeSerial.flush();
+  if (flag == 1) {
+    Serial.println("Idle");
+    NodeSerial.write("1");
+    NodeSerial.println("Idle");
+    NodeSerial.flush();
   }
 }
+
+  void setup() {
+    Serial.begin(9600);
+    NodeSerial.begin(9600);
+
+    pinMode(Lswitch, INPUT);
+    pinMode(led, OUTPUT);
+  }
+
+  void loop() {
+    char Mode;
+    int input;
+    if ( (digitalRead(Lswitch) == HIGH) && (flag == 1) )
+    {
+      Serial.println("door is opened");
+      flag = 0;
+      delay(20);
+    }
+
+    if ( (digitalRead(Lswitch) == LOW) && (flag == 0) )
+    {
+      Serial.println("door is closed");
+      flag = 1;
+      delay(20);
+
+      //รับข้อมูล mode จาก esp
+      while (NodeSerial.available () > 0) {
+        input = NodeSerial.parseInt();
+        Mode = char(input);
+        if ( Mode == '1' || Mode == '2' || Mode == '3' || Mode == '4' || Mode == '5' || Mode == '6' || Mode == '7' || Mode == '8' ) {
+          Serial.print(" Mode is ");
+          Serial.print(Mode);
+          Serial.print("\n");
+          actionMode(Mode);
+        }
+      }
+    }
+
+    if ( flag == 1 )
+    {
+      digitalWrite(led, LOW);
+    }
+
+    digitalWrite(Lswitch, HIGH);
+
+  }

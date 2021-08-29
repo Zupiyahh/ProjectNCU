@@ -12,17 +12,20 @@ const char *ssid = "Zupiyah_2.4GHz";
 const char *password = "0622067376";
 
 //Web/Server address to read/write from
-const char *host = "192.168.1.6";
+const char *host = "192.168.1.6"; 
 
-int i;
+int WTime;
 int Mode;
-String s;
+String state;
+String WID = "L01-001";
+
 
 void setup() {
 
   ArduinoSerial.begin(9600);
 
   Serial.begin(9600);
+
   WiFi.mode(WIFI_OFF);        //Prevents reconnection issue (taking too long to connect)
   delay(1000);
   WiFi.mode(WIFI_STA);        //This line hides the viewing of ESP as wifi hotspot
@@ -42,7 +45,7 @@ void setup() {
   Serial.print("Connected to ");
   Serial.println(ssid);
   Serial.print("IP address: ");
-  Serial.println(WiFi.localIP());  //IP address assigned to your ESP
+  Serial.println(WiFi.localIP()); //IP address assigned to your ESP
 }
 
 void loop() {
@@ -62,22 +65,22 @@ void loop() {
 
   //รับข้อมูล เวลา และ โพรเสจ จาก Arduino
   while (ArduinoSerial.available() > 0) {
-    i = ArduinoSerial.read ();
+    WTime = ArduinoSerial.read ();
     Serial.print("\nTime is :");
-    Serial.println(i);
-    s = ArduinoSerial.readString();
-    Serial.print("process is :");
-    Serial.print(s);
-
-
+    Serial.println(WTime);
+    state = ArduinoSerial.readString();
+    Serial.print("State is :");
+    Serial.print(state);
+    Serial.flush();
+    
     //GET Data ตั้ง HTTP Get ตามต้องการ
     HTTPClient http;
     String getData, Link;
-    int iData = i;
-    getData = "?WTime=" + String (iData) + "&Process=" + s;
-    Link = "http://192.168.1.6/ProjectConnectDatabaseNoSwicth/add.php" + getData; // Host เหมือนข้างบน
+    int WTimeData = WTime;
+    getData = "?WID=" + WID + "&WTime=" + String (WTimeData) + "&State=" + state;
+    Link = "http://192.168.1.6/Hardware/add.php" + getData; // Host เหมือนข้างบน
     Serial.print(Link);
-    http.begin(wifiClient,Link);
+    http.begin(wifiClient, Link);
     int httpCode = http.GET();            //Send the request
     http.end(); //Close connection
   }
