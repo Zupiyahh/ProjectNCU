@@ -12,7 +12,7 @@ const char *password = "0622067376";
 
 //Web/Server address to read/write from
 //const char *host = "192.168.1.6";
-const char *host = "http://192.168.1.6/herrrr/add.php";
+const char *host = "http://192.168.1.6/database/add.php";
 
 int WTime;
 int Mode;
