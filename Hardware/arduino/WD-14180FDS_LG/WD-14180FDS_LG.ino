@@ -9,12 +9,13 @@ int Time;
 int i;
 int flag = 0;
 
+ //รุ่น WD-14180FDS(LG)
 void actionMode(char Mode) {
   switch (Mode) {
-    case '1':
+    case '1': //cottonEco
       Time = 90;
       for (i = Time; i > 0; i--) {
-        delay(6000);
+        delay(7000);
         NodeSerial.write(i);
 
         Serial.print("\nTime is :");
@@ -52,20 +53,16 @@ void actionMode(char Mode) {
         else if (i == 1) {
           NodeSerial.println("finishedWashing");
           Serial.println("finishedWashing");
+          countdown();
         }
-        else if (i == 0) {
-          NodeSerial.println("finishedWashing");
-          Serial.println("finishedWashing");
-        }
-
         NodeSerial.flush();
       }
       break;
 
-    case '2':
+    case '2': //Duvet
       Time = 101;
       for (i = Time; i > 0; i--) {
-        delay(6000);
+        delay(7000);
         NodeSerial.write(i);
 
         Serial.print("\nTime is :");
@@ -103,16 +100,17 @@ void actionMode(char Mode) {
         else if (i == 1) {
           NodeSerial.println("finishedWashing");
           Serial.println("finishedWashing");
+          countdown();
         }
 
         NodeSerial.flush();
       }
       break;
 
-    case '3':
+    case '3': //Darkwash
       Time = 61;
       for (i = Time; i > 0; i--) {
-        delay(6000);
+        delay(7000);
         NodeSerial.write(i);
 
         Serial.print("\nTime is :");
@@ -151,16 +149,17 @@ void actionMode(char Mode) {
         else if (i == 1) {
           NodeSerial.println("finishedWashing");
           Serial.println("finishedWashing");
+          countdown();
         }
 
         NodeSerial.flush();
       }
       break;
 
-    case '4':
+    case '4': //Delicate
       Time = 47;
       for (i = Time; i > 0; i--) {
-        delay(6000);
+        delay(7000);
         NodeSerial.write(i);
 
         Serial.print("\nTime is :");
@@ -199,15 +198,16 @@ void actionMode(char Mode) {
         else if (i == 1) {
           NodeSerial.println("finishedWashing");
           Serial.println("finishedWashing");
+          countdown();
         }
         NodeSerial.flush();
       }
       break;
 
-    case '5':
+    case '5': //Wool
       Time = 35;
       for (i = Time; i > 0; i--) {
-        delay(6000);
+        delay(7000);
         NodeSerial.write(i);
 
         Serial.print("\nTime is :");
@@ -245,16 +245,17 @@ void actionMode(char Mode) {
         else if (i == 1) {
           NodeSerial.println("finishedWashing");
           Serial.println("finishedWashing");
+          countdown();
         }
 
         NodeSerial.flush();
       }
       break;
 
-    case '6':
+    case '6': //Incentive
       Time = 60;
       for (i = Time; i > 0; i--) {
-        delay(6000);
+        delay(7000);
         NodeSerial.write(i);
 
         Serial.print("\nTime is :");
@@ -293,14 +294,15 @@ void actionMode(char Mode) {
         else if (i == 1) {
           NodeSerial.println("finishedWashing");
           Serial.println("finishedWashing");
+          countdown();
         }
 
         NodeSerial.flush();
       }
       break;
 
-    case '7':
-      Time = 10;
+    case '7': //Quick
+      Time = 30;
       for (i = Time; i > 0; i--) {
         delay(7000);
         NodeSerial.write(i);
@@ -346,10 +348,10 @@ void actionMode(char Mode) {
       }
       break;
 
-    default:
+    default: //SportWear
       Time = 54;
       for (i = Time; i > 0; i--) {
-        delay(6000);
+        delay(7000);
         NodeSerial.write(i);
 
         Serial.print("\nTime is :");
@@ -387,6 +389,7 @@ void actionMode(char Mode) {
         else if (i == 1) {
           NodeSerial.println("finishedWashing");
           Serial.println("finishedWashing");
+          countdown();
         }
 
         NodeSerial.flush();
@@ -397,6 +400,7 @@ void actionMode(char Mode) {
 }
 
 void countdown() {
+  
   //ตั้งเวลาเกิน
   for (int i = 5; i >= 0; i -- ) {
     Serial.print("\tcountdown:");

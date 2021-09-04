@@ -17,8 +17,8 @@ const char *host = "192.168.1.6";
 int WTime;
 int Mode;
 String state;
-String WID = "L01-001";
-
+String WID = "L02-002";
+String Model = "WD-14180FDS";
 
 void setup() {
 
@@ -77,8 +77,8 @@ void loop() {
     HTTPClient http;
     String getData, Link;
     int WTimeData = WTime;
-    getData = "?WID=" + WID + "&WTime=" + String (WTimeData) + "&State=" + state;
-    Link = "http://192.168.1.6/Hardware/add.php" + getData; // Host เหมือนข้างบน
+    getData = "?WID=" + WID + "&Model=" + Model + "&WTime=" + String (WTimeData) + "&State=" + state;
+    Link = "http://192.168.1.6/DB/add_L02-002_LG.php" + getData; // Host เหมือนข้างบน
     Serial.print(Link);
     http.begin(wifiClient, Link);
     int httpCode = http.GET();            //Send the request

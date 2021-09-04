@@ -366,3 +366,4 @@ void P6sakseadleaw() { //ซักเสร็จแล้ว
   NodeSerial.println(" Process is :ซักเสร็จแล้ว ");
   Serial.println(" Process is :ซักเสร็จแล้ว ");
 }
+

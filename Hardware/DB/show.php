@@ -1,8 +1,10 @@
 <html>
 <head>
-<title>NodeMCU ESP8266 MySQL Database</title>
+<title>Wash Staion MySQL Database</title>
 <meta http-equiv="refresh" content="3">
 </head> 
+<h2 align="center">Hard ware</h2>
+</table>
 <body>
 <?php
 $servername = "localhost";
@@ -22,13 +24,15 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
-	echo "<table border='1'><th>WID</th><th>WTime</th><th>State</th><th>DATETIME</th>";
+	echo "<table width='1000' border='5' align='center' cellpadding='2' cellspacing='1'><th>WID</th><th>Model</th><th>WTime</th><th>State</th><th>DATETIME</th>";
     while($row = $result->fetch_assoc()) {
 		echo "<tr>";
-		echo "<td>".$row['WID']."</td>";
-		echo "<td>".$row['WTime']."</td>";
-		echo "<td>".$row['State']."</td>";
-		echo "<td>".$row['reading_time']."</td>";
+		//echo "<td>".$row['No']."</td>";
+		echo "<td align='center'>".$row['WID']."</td>";
+		echo "<td align='center'>".$row['Model']."</td>";
+		echo "<td align='center'>".$row['WTime']."</td>";
+		echo "<td align='center'>".$row['State']."</td>";
+		echo "<td align='center'>".$row['reading_time']."</td>";
 		echo "</tr>";
     }
 	echo "</table>";
